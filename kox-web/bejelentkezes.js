@@ -1,0 +1,3 @@
+function bejelentkezes(){
+    navigacio('adatok');
+}

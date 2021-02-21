@@ -3,11 +3,63 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="">
-	<script type="text/javascript" src=""></script>
-	<title></title>
+	<link rel="stylesheet" type="text/css" href="adatok.css">
+	<script type="text/javascript" src="adatok.js"></script>
+	<script type="text/javascript" src="navigacio.js"></script>
+	<title>Adatok</title>
 </head>
 <body>
+	<div id="Header">
+		<button onclick="navigacio('grafikonok');">Grafikonok</button>
+		<button onclick="navigacio('adatok');">Adatok</button>
+		<button onclick="navigacio('beviteli-mezo');">Beviteli mező</button>
+		<button onclick="kijelentkezes();">Kijelentkezés</button>
+	</div>
+	<div>
+		<div>
+			<span>
+				<label for="">Felhasználónév</label>
+				<label for=""></label>
+			</span>
 
+			<span>
+				<label for="">Jelszó változtatás</label>
+				<input type="text">
+			</span>
+
+			<span>
+				<label for="">Születési dátum</label>
+				<label for=""></label>
+			</span>
+				
+			<span>
+				<label for="">Magasság</label>
+				<label for=""></label>			
+			</span>
+
+			<span>
+				<label for="">Jelenlegi súly</label>
+				<label for=""></label>
+				<input type="text">
+			</span>
+
+			<span>
+				<label for="">Célsúly</label>
+				<label for=""></label>
+				<input type="text">
+			</span>
+
+			<span>
+				<label for="">Kívánt súlyváltozás/idő</label>
+				<label for=""></label>
+				<input type="text">
+			</span>
+
+			<button>Változtatások mentése</button>
+		</div>
+	</div>
+	<div id="Footer">
+
+	</div>
 </body>
 </html>
