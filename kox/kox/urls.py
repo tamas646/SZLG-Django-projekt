@@ -25,4 +25,10 @@ urlpatterns = [
     path('adatok', views.adatok),
     path('beviteli-mezo', views.beviteli_mezo),
     path('grafikonok', views.grafikonok),
+    path('backend/get_food_details'),
+    path('backend/save_intake'),
+    path('backend/save_sport'),
+    path('backend/login'),
+    path('backend/registration'),
+    path('backend/logout'),
 ]

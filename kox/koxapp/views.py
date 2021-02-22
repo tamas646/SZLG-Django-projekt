@@ -29,14 +29,54 @@ def regisztracio(request, *args, **kwargs):
 def adatok(request, *args, **kwargs):
 	if not isLoggedIn(request):
 		return redirect('/')
+	# felhasználónév
+	# születési dátum
+	# magasság
+	# jelenlegi súly
+	# célsúly
 	return render(request, 'adatok.html')
 
 def beviteli_mezo(request, *args, **kwargs):
 	if not isLoggedIn(request):
 		return redirect('/')
+	# termék nevei + id
+	# mozgas típusok nevei + ix
 	return render(request, 'beviteli-mezo.html')
 
 def grafikonok(request, *args, **kwargs):
 	if not isLoggedIn(request):
 		return redirect('/')
+	# elmúlt 24 óra
+	# napi bevitel:
+	#	- Kcal
+	#	- Zsír
+	#	- Fehérje
+	#	- Szénhidrát
+	# heti bevitel:
+	#	- Kcal
+	#	- Zsír
+	#	- Fehérje
+	#	- Szénhidrát
+	# havi bevitel:
+	#	- Kcal
+	#	- Zsír
+	#	- Fehérje
+	#	- Szénhidrát
+	# napi mozgás:
+	#	- gyaloglás
+	#	- futás
+	#	- úszás
+	#	- kerékpározás
+	# heti mozgás:
+	#	- gyaloglás
+	#	- futás
+	#	- úszás
+	#	- kerékpározás
+	# havi mozgás:
+	#	- gyaloglás
+	#	- futás
+	#	- úszás
+	#	- kerékpározás
 	return render(request, 'grafikonok.html')
+
+# 
