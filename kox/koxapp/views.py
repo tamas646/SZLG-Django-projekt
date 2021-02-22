@@ -11,6 +11,8 @@ def isLoggedIn(request):
 			del request.session['user']
 	return False
 
+# Frontend views
+
 def root(request, *args, **kwargs):
 	if isLoggedIn(request):
 		return redirect('/beviteli-mezo')
@@ -79,4 +81,22 @@ def grafikonok(request, *args, **kwargs):
 	#	- kerékpározás
 	return render(request, 'grafikonok.html')
 
-# 
+# Backend views
+
+def backend_login(request, *args, **kwargs):
+	pass
+
+def backend_registration(request, *args, **kwargs):
+	pass
+
+def backend_logout(request, *args, **kwargs):
+	pass
+
+def backend_get_food_details(request, *args, **kwargs):
+	pass
+
+def backend_save_intake(request, *args, **kwargs):
+	pass
+
+def backend_save_sport(request, *args, **kwargs):
+	pass
