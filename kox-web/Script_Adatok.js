@@ -1,3 +1,0 @@
-function Módosítások_mentése(){
-    
-}
