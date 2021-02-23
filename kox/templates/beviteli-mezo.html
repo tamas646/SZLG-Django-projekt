@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Beviteli mező</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="/static/js/main.js"></script>
+	<script type="text/javascript" src="/static/js/beviteli-mezo.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/beviteli-mezo.css">
+</head>
+<body>
+	<div>
+		<button onclick="Navigáció('HTML_Grafikonok.html');">Grafikonok</button>
+		<button onclick="Navigáció('HTML_Adatok.html');">Adatok</button>
+		<button onclick="Navigáció('HTML_Beviteli_mező.html')">Beviteli mező</button>
+		<button onclick="Kijelentkezés();">Kijelentkezés</button>
+	</div>
+	<div>
+		<div>
+			<label for="">Dátum</label>
+			<input type="date">
+			<label for="">Termék neve</label>
+			<select name="" id="">
+
+			</select>
+			<input type="text" placeholder="Mennyiség (gramm)">
+			<input type="text" placeholder="Kcal/100g">
+			<input type="text" placeholder="Zsír/100g">
+			<input type="text" placeholder="Fehérje/100g">
+			<input type="text" placeholder="Szénhidrát/100g">
+			<button onclick="Mentés_étkezés();">Mentés</button>
+		</div>
+		<div>
+			<label for="">Dátum</label>
+			<input type="date">
+			<label for="">Sport neve</label>
+			<select name="" id="">
+
+			</select>
+			<input type="text" placeholder="Időtartam (perc)">
+			<button onclick="Mentés_mozgás();">Mentés</button>
+		</div>
+	</div>
+	<div>
+
+	</div>
+</body>
+</html>
