@@ -10,10 +10,18 @@
 </head>
 <body>
 	<div>
-		<button onclick="Navigáció('HTML_Grafikonok.html');">Grafikonok</button>
-		<button onclick="Navigáció('HTML_Adatok.html');">Adatok</button>
-		<button onclick="Navigáció('HTML_Beviteli_mező.html')">Beviteli mező</button>
-		<button onclick="Kijelentkezés();">Kijelentkezés</button>
+		<a href="grafikonok.html">
+			<button>Grafikonok</button>
+		</a>
+		<a href="adatok.html">
+			<button>Adatok</button>
+		</a>
+		<a href="beviteli-mezo.html">
+			<button>Beviteli mező</button>
+		</a>
+		<a href="bejelentkezes.html">
+			<button>Kijelentkezés</button>
+		</a>
 	</div>
 	<div>
 		<div>
@@ -23,11 +31,11 @@
 			<select name="" id="">
 
 			</select>
-			<input type="text" placeholder="Mennyiség (gramm)">
-			<input type="text" placeholder="Kcal/100g">
-			<input type="text" placeholder="Zsír/100g">
-			<input type="text" placeholder="Fehérje/100g">
-			<input type="text" placeholder="Szénhidrát/100g">
+			<input type="text" value="Mennyiség (gramm)">
+			<input type="text" value="Kcal/100g">
+			<input type="text" value="Zsír/100g">
+			<input type="text" value="Fehérje/100g">
+			<input type="text" value="Szénhidrát/100g">
 			<button onclick="Mentés_étkezés();">Mentés</button>
 		</div>
 		<div>
@@ -37,7 +45,7 @@
 			<select name="" id="">
 
 			</select>
-			<input type="text" placeholder="Időtartam (perc)">
+			<input type="text" value="Időtartam (perc)">
 			<button onclick="Mentés_mozgás();">Mentés</button>
 		</div>
 	</div>
