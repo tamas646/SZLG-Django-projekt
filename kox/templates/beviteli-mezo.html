@@ -38,7 +38,7 @@
 			<form action="backend/save_sport" method="POST">
 				{% csrf_token %}
 				<label for="">Sport neve</label>
-				<select name="" id="">
+				<select name="tipus_id" id="">
 					{% for mozgas in mozgasok %}
 						<option value="{{ mozgas.id }}">{{ mozgas.nev }}</option>
 					{% endfor %}
