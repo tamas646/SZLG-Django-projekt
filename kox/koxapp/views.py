@@ -208,7 +208,7 @@ def backend_change_userdata(request, *args, **kwargs):
 		return redirect('/')
 	if request.method != 'POST':
 		return redirect('/adatok')
-	Felhasznalo.objects.filter(id = request.session['user']['id']).update(magassag = request.POST['magassag'], suly_akt = request.POST['suly_akt'], suly_cel = request.POST['suly_cel'])
+	Felhasznalo.objects.filter(id = request.session['user']['id']).update(magassag = 0 if request.POST['magassag'] == '' else request.POST['magassag'], suly_akt = 0 if request.POST['suly_akt'] == '' else request.POST['suly_akt'], suly_cel = 0 if request.POST['suly_cel'] == '' else request.POST['suly_cel'])
 	if 'jelszo' in request.POST and request.POST['jelszo'] != '':
 		Felhasznalo.objects.filter(id = request.session['user']['id']).update(jelszo = request.POST['jelszo'])
 	return redirect('/adatok')

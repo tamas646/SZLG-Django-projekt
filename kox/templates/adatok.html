@@ -17,33 +17,29 @@
 	</div>
 	<div>
 		<div>
-			<form action="backend/change_userdata'" method="POST">
+			<form action="backend/change_userdata" method="POST">
 				{% csrf_token %}
 				<label for="">Felhasználónév</label>
-				<label for=""></label>
+				<label for="">{{ felhasznalonev }}</label>
 				<label for="">Jelszó változtatás</label>
-				<input type="password">
+				<input type="password" name="jelszo" placeholder="Nem változott">
 				<label for="">Születési dátum</label>
-				<label for=""></label>
+				<label for="">{{ szuldatum }}</label>
 				<label for="">Magasság</label>
 				<label for=""></label>
-				<input type="text" name="magassag">
+				<input type="number" name="magassag" value="{{ magassag }}">
 				<label for="">Jelenlegi súly</label>
 				<label for=""></label>
-				<input type="text" name="suly_akt">
+				<input type="number" name="suly_akt" value="{{ suly_akt }}">
 				<label for="">Célsúly</label>
 				<label for=""></label>
-				<input type="text" name="suly_cel">
+				<input type="number" name="suly_cel" value="{{ suly_cel }}">
 				<input type="submit" class="button" value="Módosítások mentése">
 			</form>
 		</div>
 	</div>
 	<div>
-		{{ felhasznalonev }}
-		{{ szuldatum }}
-		{{ magassag }}
-		{{ suly_akt }}
-		{{ suly_cel }}
+		
 	</div>
 <footer class="footer">
 		
