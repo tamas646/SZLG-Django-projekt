@@ -31,4 +31,5 @@ urlpatterns = [
     path('backend/get_food_details', views.backend_get_food_details),
     path('backend/save_intake', views.backend_save_intake),
     path('backend/save_sport', views.backend_save_sport),
+    path('backend/change_userdata', views.backend_change_userdata),
 ]

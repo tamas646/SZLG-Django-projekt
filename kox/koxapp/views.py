@@ -202,3 +202,6 @@ def backend_save_sport(request, *args, **kwargs):
 	)
 	sport.save()
 	return redirect('/beviteli-mezo')
+
+def backend_change_userdata(request, *args, **kwargs):
+	pass
