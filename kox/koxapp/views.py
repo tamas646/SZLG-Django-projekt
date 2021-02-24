@@ -109,7 +109,7 @@ def grafikonok(request, *args, **kwargs):
 # Backend views
 
 def backend_login(request, *args, **kwargs):
-	if not isLoggedIn(request) and request.method == 'POST': # and hasattr(request.POST, 'felhasznalonev') and hasattr(request.POST, 'jelszo'):
+	if not isLoggedIn(request) and request.method == 'POST':
 		result = Felhasznalo.objects.filter(felhasznalonev = request.POST['felhasznalonev'], jelszo = request.POST['jelszo'])
 		if len(result) == 1:
 			request.session['user'] = {
@@ -122,7 +122,7 @@ def backend_login(request, *args, **kwargs):
 	return redirect('/bejelentkezes')
 
 def backend_registration(request, *args, **kwargs):
-	if not isLoggedIn(request) and request.method == 'POST': # and hasattr(request.POST, 'felhasznalonev') and hasattr(request.POST, 'jelszo') and hasattr(request.POST, 'szuldatum') and hasattr(request.POST, 'magassag') and hasattr(request.POST, 'suly_akt') and hasattr(request.POST, 'suly_cel') and hasattr(request.POST, 'ferfi'):
+	if not isLoggedIn(request) and request.method == 'POST':
 		user = Felhasznalo(
 			felhasznalonev = request.POST['felhasznalonev'],
 			jelszo = request.POST['jelszo'],
@@ -163,7 +163,7 @@ def backend_get_food_details(request, *args, **kwargs):
 def backend_save_intake(request, *args, **kwargs):
 	if not isLoggedIn(request):
 		return redirect('/')
-	if request.method != 'POST': # or not hasattr(request.POST, 'mennyiseg') or not hasattr(request.POST, 'kaloria') or not hasattr(request.POST, 'zsir') or not hasattr(request.POST, 'feherje') or not hasattr(request.POST, 'szenhidrat'):
+	if request.method != 'POST':
 		return redirect('/beviteli-mezo')
 	mennyiseg = int(request.POST['mennyiseg'])
 	kaloria = int(request.POST['kaloria']) * mennyiseg / 100
@@ -184,7 +184,7 @@ def backend_save_intake(request, *args, **kwargs):
 def backend_save_sport(request, *args, **kwargs):
 	if not isLoggedIn(request):
 		return redirect('/')
-	if request.method != 'POST': # or not hasattr(request.POST, 'tipus_id') or not hasattr(request.POST, 'ido'):
+	if request.method != 'POST':
 		return redirect('/beviteli-mezo')
 	sport = Mozgas(
 		felhasznalo = Felhasznalo.objects.filter(id = request.session['user']['id'])[0],
