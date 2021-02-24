@@ -25,7 +25,15 @@ def root(request, *args, **kwargs):
 def bejelentkezes(request, *args, **kwargs):
 	if isLoggedIn(request):
 		return redirect('/')
-	return render(request, 'bejelentkezes.html')
+	login_error = False
+	login_regist = False
+	if 'login_error' in request.session:
+		login_error = True
+		del request.session['login_error']
+	if 'login_regist' in request.session:
+		login_regist = True
+		del request.session['login_regist']
+	return render(request, 'bejelentkezes.html', { 'login_error': login_error, 'login_regist': login_regist })
 
 def regisztracio(request, *args, **kwargs):
 	if isLoggedIn(request):
@@ -118,7 +126,7 @@ def backend_login(request, *args, **kwargs):
 				'jelszo': result[0].jelszo,
 			}
 			return redirect('/')
-		request.session['login_error'] = 'Hibás felhasználónév vagy jelszó'
+		request.session['login_error'] = True
 	return redirect('/bejelentkezes')
 
 def backend_registration(request, *args, **kwargs):
@@ -130,7 +138,7 @@ def backend_registration(request, *args, **kwargs):
 			magassag = request.POST['magassag'],
 			suly_akt = request.POST['suly_akt'],
 			suly_cel = request.POST['suly_cel'],
-			ferfi = request.POST['ferfi'] == 'on'
+			ferfi = 'ferfi' in request.POST
 		)
 		user.save()
 		request.session['login_regist'] = True

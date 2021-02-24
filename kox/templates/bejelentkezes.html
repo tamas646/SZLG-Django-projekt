@@ -20,6 +20,13 @@
 	</div>
 	<div>
 		<div>
+			<p>
+				{% if login_error %}
+					Hibás felhasználónév vagy jelszó
+				{% elif login_regist %}
+					Sikeres regisztráció. Mostmár bejelentkezhet.
+				{% endif %}
+			</p>
 			<form action="backend/login" method="POST">
 				{% csrf_token %}
 				<input type="text" placeholder=" Felhasználónév" name="felhasznalonev">
