@@ -1,5 +1,4 @@
-import json
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 
 # Create your views here.
@@ -172,10 +171,10 @@ def backend_logout(request, *args, **kwargs):
 def backend_get_food_details(request, *args, **kwargs):
 	if isLoggedIn(request.session):
 		if request.method != 'POST' or not hasattr(request.POST, 'id'):
-			return HttpResponse(json.dumps({'success': False, 'message': 'Hibás kérés'}), content_type = 'application/json');
+			return JsonResponse({'success': False, 'message': 'Hibás kérés'})
 		result = Etel.objects.filter(id = request.POST['id'])
 		if len(result) == 0:
-			return HttpResponse(json.dumps({'success': False, 'message': 'A kért termék nem található'}), content_type = 'application/json')
+			return JsonResponse({'success': False, 'message': 'A kért termék nem található'})
 		response_data = {
 			'success': True,
 			'data': {
@@ -184,8 +183,8 @@ def backend_get_food_details(request, *args, **kwargs):
 				'szenhidrat': result.szenhidrat,
 			}
 		}
-		return HttpResponse(json.dumps(response_data), content_type = 'application/json')
-	return HttpResponse(json.dumps({'success': False, 'message': 'Nincs bejelentkezve'}), content_type = 'application/json');
+		return JsonResponse(response_data)
+	return JsonResponse({'success': False, 'message': 'Nincs bejelentkezve'})
 
 def backend_save_intake(request, *args, **kwargs):
 	pass
