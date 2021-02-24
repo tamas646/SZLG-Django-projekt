@@ -21,7 +21,10 @@
 				{% csrf_token %}
 				<label for="">Termék neve</label>
 				<select name="" id="">
-
+					<option value="0">Egyéb</option>
+					{% for termek in termekek %}
+						<option value="{{ termek.id }}">{{ termek.nev }}</option>
+					{% endfor %}
 				</select>
 				<input type="number" placeholder="Mennyiség (gramm)" name="mennyiseg">
 				<input type="text" placeholder="Kcal/100g" name="kaloria">
@@ -36,7 +39,9 @@
 				{% csrf_token %}
 				<label for="">Sport neve</label>
 				<select name="" id="">
-
+					{% for mozgas in mozgasok %}
+						<option value="{{ mozgas.id }}">{{ mozgas.nev }}</option>
+					{% endfor %}
 				</select>
 				<input type="text" placeholder="Időtartam (perc)" name="ido">
 				<input type="submit" class="button" value="Mentés">
@@ -44,8 +49,7 @@
 		</div>
 	</div>
 	<div>
-		{{ termekek }}
-		{{ mozgasok }}
+		
 	</div>
 <footer class="footer">
 	

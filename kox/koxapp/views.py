@@ -63,7 +63,7 @@ def beviteli_mezo(request, *args, **kwargs):
 	for termek in Etel.objects.all():
 		context['termekek'].append({ 'id': termek.id, 'nev': termek.nev })
 	for mozgas in MozgasTipus.objects.all():
-		context['termekek'].append({ 'id': mozgas.id, 'nev': mozgas.nev })
+		context['mozgasok'].append({ 'id': mozgas.id, 'nev': mozgas.nev })
 	return render(request, 'beviteli-mezo.html', context)
 
 def grafikonok(request, *args, **kwargs):
