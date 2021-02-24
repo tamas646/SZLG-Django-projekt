@@ -48,7 +48,7 @@ def adatok(request, *args, **kwargs):
 def beviteli_mezo(request, *args, **kwargs):
 	if not isLoggedIn(request):
 		return redirect('/')
-	context: {
+	context = {
 		'termekek': [],
 		'mozgasok': [],
 	}
@@ -88,21 +88,21 @@ def grafikonok(request, *args, **kwargs):
 			AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
 			AND `koxapp_mozgas`.`datum` >= date('now', '-1 day')
 		GROUP BY `koxapp_mozgas`.`tipus_id`, `koxapp_mozgastipus`.`nev`
-	''').fetchone()
+	''').fetchall()
 	context['mozgas']['heti'] = cursor.execute('''
 		SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, SUM(`koxapp_mozgas`.`ido`) AS `ido` FROM `koxapp_mozgastipus`
 		LEFT JOIN `koxapp_mozgas` ON `koxapp_mozgas`.`tipus_id` = `koxapp_mozgastipus`.`id`
 			AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
 			AND `koxapp_mozgas`.`datum` >= date('now', '-7 day')
 		GROUP BY `koxapp_mozgas`.`tipus_id`, `koxapp_mozgastipus`.`nev`
-	''').fetchone()
+	''').fetchall()
 	context['mozgas']['havi'] = cursor.execute('''
 		SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, SUM(`koxapp_mozgas`.`ido`) AS `ido` FROM `koxapp_mozgastipus`
 		LEFT JOIN `koxapp_mozgas` ON `koxapp_mozgas`.`tipus_id` = `koxapp_mozgastipus`.`id`
 			AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
 			AND `koxapp_mozgas`.`datum` >= date('now', '-1 month')
 		GROUP BY `koxapp_mozgas`.`tipus_id`, `koxapp_mozgastipus`.`nev`
-	''').fetchone()
+	''').fetchall()
 	# elmúlt 24 óra
 	# napi bevitel:
 	#	- Kcal
@@ -139,7 +139,7 @@ def grafikonok(request, *args, **kwargs):
 # Backend views
 
 def backend_login(request, *args, **kwargs):
-	if not isLoggedIn(request.session) and request.method == 'POST' and hasattr(request.POST, 'felhasznalonev') and hasattr(request.POST, 'jelszo'):
+	if not isLoggedIn(request) and request.method == 'POST' and hasattr(request.POST, 'felhasznalonev') and hasattr(request.POST, 'jelszo'):
 		result = Felhasznalo.objects.filter(felhasznalonev = request.POST['felhasznalonev'], jelszo = request.POST['jelszo'])
 		if len(result) == 1:
 			request.session['user'] = {
@@ -152,7 +152,7 @@ def backend_login(request, *args, **kwargs):
 	return redirect('/bejelentkezes')
 
 def backend_registration(request, *args, **kwargs):
-	if not isLoggedIn(request.session) and request.method == 'POST' and hasattr(request.POST, 'felhasznalonev') and hasattr(request.POST, 'jelszo') and hasattr(request.POST, 'szuldatum') and hasattr(request.POST, 'magassag') and hasattr(request.POST, 'suly_akt') and hasattr(request.POST, 'suly_cel') and hasattr(request.POST, 'ferfi'):
+	if not isLoggedIn(request) and request.method == 'POST' and hasattr(request.POST, 'felhasznalonev') and hasattr(request.POST, 'jelszo') and hasattr(request.POST, 'szuldatum') and hasattr(request.POST, 'magassag') and hasattr(request.POST, 'suly_akt') and hasattr(request.POST, 'suly_cel') and hasattr(request.POST, 'ferfi'):
 		user = Felhasznalo(
 			felhasznalonev = request.POST['felhasznalonev'],
 			jelszo = request.POST['jelszo'],
@@ -168,12 +168,12 @@ def backend_registration(request, *args, **kwargs):
 	return redirect('/regisztracio')
 
 def backend_logout(request, *args, **kwargs):
-	if isLoggedIn(request.session):
+	if isLoggedIn(request):
 		del request.session['user']
 	return redirect('/bejelentkezes')
 
 def backend_get_food_details(request, *args, **kwargs):
-	if not isLoggedIn(request.session):
+	if not isLoggedIn(request):
 		return JsonResponse({'success': False, 'message': 'Nincs bejelentkezve'})
 	if request.method != 'POST' or not hasattr(request.POST, 'id'):
 		return JsonResponse({'success': False, 'message': 'Hibás kérés'})
@@ -191,7 +191,7 @@ def backend_get_food_details(request, *args, **kwargs):
 	return JsonResponse(response_data)
 
 def backend_save_intake(request, *args, **kwargs):
-	if not isLoggedIn(request.session):
+	if not isLoggedIn(request):
 		return redirect('/')
 	if request.method != 'POST' or not hasattr(request.POST, 'mennyiseg') or not hasattr(request.POST, 'kaloria') or not hasattr(request.POST, 'zsir') or not hasattr(request.POST, 'feherje') or not hasattr(request.POST, 'szenhidrat'):
 		return redirect('/beviteli-mezo')
@@ -212,7 +212,7 @@ def backend_save_intake(request, *args, **kwargs):
 	return redirect('/beviteli-mezo')
 
 def backend_save_sport(request, *args, **kwargs):
-	if not isLoggedIn(request.session):
+	if not isLoggedIn(request):
 		return redirect('/')
 	if request.method != 'POST' or not hasattr(request.POST, 'tipus_id') or not hasattr(request.POST, 'ido'):
 		return redirect('/beviteli-mezo')
