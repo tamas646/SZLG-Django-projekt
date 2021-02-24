@@ -1,6 +1,7 @@
 import datetime
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
+from koxapp.models import Felhasznalo, Bevitel, MozgasTipus, Mozgas, Etel
 
 # Create your views here.
 
@@ -50,9 +51,9 @@ def beviteli_mezo(request, *args, **kwargs):
 		'termekek': [],
 		'mozgasok': [],
 	}
-	for termek in Etel.objects:
+	for termek in Etel.objects.all():
 		context['termekek'].append({ 'id': termek.id, 'nev': termek.nev })
-	for mozgas in MozgasTipus.objects:
+	for mozgas in MozgasTipus.objects.all():
 		context['termekek'].append({ 'id': mozgas.id, 'nev': mozgas.nev })
 	return render(request, 'beviteli-mezo.html')
 
