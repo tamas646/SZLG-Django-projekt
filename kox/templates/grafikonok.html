@@ -7,6 +7,7 @@
 	<script type="text/javascript" src="/static/js/grafikonok.js"></script>
 	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/grafikonok.css">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 <body>
 	<div>
@@ -15,9 +16,149 @@
 		<a href="beviteli-mezo" class="button">Beviteli mező</a>
 		<a href="backend/logout" class="button">Kijelentkezés</a>
 	</div>
-	<div>
-		{{ bevitel }}
-		{{ mozgas }}
+	<div class="container">
+		<div>
+			<div>
+				<h2>Napi bevitel</h2>
+				<div class="databox">
+					<table>
+						<tbody>
+							<tr>
+								<td>Kcal</td>
+								<td>{{ bevitel.napi.0 }}</td>
+							</tr>
+							<tr>
+								<td>Zsír</td>
+								<td>{{ bevitel.napi.1 }}</td>
+							</tr>
+							<tr>
+								<td>Fehérje</td>
+								<td>{{ bevitel.napi.2 }}</td>
+							</tr>
+							<tr>
+								<td>Szénhidrát</td>
+								<td>{{ bevitel.napi.3 }}</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="chart_div">
+						<canvas class="myPieChart_bevitel"></canvas>
+					</div>
+				</div>
+			</div>
+			<div>
+				<h2>Heti bevitel</h2>
+				<div class="databox">
+					<table>
+						<tbody>
+							<tr>
+								<td>Kcal</td>
+								<td>{{ bevitel.heti.0 }}</td>
+							</tr>
+							<tr>
+								<td>Zsír</td>
+								<td>{{ bevitel.heti.1 }}</td>
+							</tr>
+							<tr>
+								<td>Fehérje</td>
+								<td>{{ bevitel.heti.2 }}</td>
+							</tr>
+							<tr>
+								<td>Szénhidrát</td>
+								<td>{{ bevitel.heti.3 }}</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="chart_div">
+						<canvas class="myPieChart_bevitel"></canvas>
+					</div>
+				</div>
+			</div>
+			<div>
+				<h2>Havi bevitel</h2>
+				<div class="databox">
+					<table>
+						<tbody>
+							<tr>
+								<td>Kcal</td>
+								<td>{{ bevitel.havi.0 }}</td>
+							</tr>
+							<tr>
+								<td>Zsír</td>
+								<td>{{ bevitel.havi.1 }}</td>
+							</tr>
+							<tr>
+								<td>Fehérje</td>
+								<td>{{ bevitel.havi.2 }}</td>
+							</tr>
+							<tr>
+								<td>Szénhidrát</td>
+								<td>{{ bevitel.havi.3 }}</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="chart_div">
+						<canvas class="myPieChart_bevitel"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div>
+				<h2>Napi mozgás</h2>
+				<div class="databox">
+					<table>
+						<tbody>
+							{% for mozg in mozgas.napi %}
+								<tr>
+									<td>{{ mozg.0 }}</td>
+									<td>{{ mozg.1 }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					<div class="chart_div">
+						<canvas class="myPieChart_mozgas"></canvas>
+					</div>
+				</div>
+			</div>
+			<div>
+				<h2>Heti mozgás</h2>
+				<div class="databox">
+					<table>
+						<tbody>
+							{% for mozg in mozgas.heti %}
+								<tr>
+									<td>{{ mozg.0 }}</td>
+									<td>{{ mozg.1 }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					<div class="chart_div">
+						<canvas class="myPieChart_mozgas"></canvas>
+					</div>
+				</div>
+			</div>
+			<div>
+				<h2>Havi mozgás</h2>
+				<div class="databox">
+					<table>
+						<tbody>
+							{% for mozg in mozgas.havi %}
+								<tr>
+									<td>{{ mozg.0 }}</td>
+									<td>{{ mozg.1 }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					<div class="chart_div">
+						<canvas class="myPieChart_mozgas"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 <footer class="footer">
 	
