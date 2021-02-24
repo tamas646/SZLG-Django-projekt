@@ -1,3 +1,4 @@
+import datetime
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 
@@ -169,25 +170,43 @@ def backend_logout(request, *args, **kwargs):
 	return redirect('/bejelentkezes')
 
 def backend_get_food_details(request, *args, **kwargs):
-	if isLoggedIn(request.session):
-		if request.method != 'POST' or not hasattr(request.POST, 'id'):
-			return JsonResponse({'success': False, 'message': 'Hibás kérés'})
-		result = Etel.objects.filter(id = request.POST['id'])
-		if len(result) == 0:
-			return JsonResponse({'success': False, 'message': 'A kért termék nem található'})
-		response_data = {
-			'success': True,
-			'data': {
-				'zsir': result.zsir,
-				'feherje': result.feherje,
-				'szenhidrat': result.szenhidrat,
-			}
+	if not isLoggedIn(request.session):
+		return JsonResponse({'success': False, 'message': 'Nincs bejelentkezve'})
+	if request.method != 'POST' or not hasattr(request.POST, 'id'):
+		return JsonResponse({'success': False, 'message': 'Hibás kérés'})
+	result = Etel.objects.filter(id = request.POST['id'])
+	if len(result) == 0:
+		return JsonResponse({'success': False, 'message': 'A kért termék nem található'})
+	response_data = {
+		'success': True,
+		'data': {
+			'zsir': result.zsir,
+			'feherje': result.feherje,
+			'szenhidrat': result.szenhidrat,
 		}
-		return JsonResponse(response_data)
-	return JsonResponse({'success': False, 'message': 'Nincs bejelentkezve'})
+	}
+	return JsonResponse(response_data)
 
 def backend_save_intake(request, *args, **kwargs):
-	pass
+	if not isLoggedIn(request.session):
+		return redirect('/')
+	if request.method != 'POST' or not hasattr(request.POST, 'mennyiseg') or not hasattr(request.POST, 'kaloria') or not hasattr(request.POST, 'zsir') or not hasattr(request.POST, 'feherje') or not hasattr(request.POST, 'szenhidrat'):
+		return redirect('/beviteli-mezo')
+	mennyiseg = int(request.POST['mennyiseg'])
+	kaloria = int(request.POST['kaloria']) * mennyiseg / 100
+	zsir = int(request.POST['zsir']) * mennyiseg / 100
+	feherje = int(request.POST['feherje']) * mennyiseg / 100
+	szenhidrat = int(request.POST['szenhidrat']) * mennyiseg / 100
+	intake = Bevitel(
+		felhasznalo = Felhasznalo.objects.filter(id = request.session['user']['id']),
+		datum = datetime.datetime.now(),
+		kaloria = kaloria,
+		zsir = zsir,
+		feherje = feherje,
+		szenhidrat = szenhidrat
+	)
+	intake.save()
+	return redirect('/beviteli-mezo')
 
 def backend_save_sport(request, *args, **kwargs):
 	pass
