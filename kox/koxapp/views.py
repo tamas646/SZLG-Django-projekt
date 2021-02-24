@@ -67,42 +67,12 @@ def grafikonok(request, *args, **kwargs):
 	}
 	# result = map(lambda a: { 'kaloria':  }, Bevitel.objects.filter(a => a.felhasznalo.id == request.session['user']['id'])
 	cursor = connection.cursor()
-	context['bevitel']['napi'] = cursor.execute('''
-		SELECT SUM(`kaloria`) AS `kaloria`, SUM(`zsir`) AS `zsir`, SUM(`feherje`) AS `feherje`, SUM(`szenhidrat`) AS `szenhidrat` FROM `koxapp_bevitel`
-		WHERE `felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
-		AND `datum` >= date('now', '-1 day')
-	''').fetchone()
-	context['bevitel']['heti'] = cursor.execute('''
-		SELECT SUM(`kaloria`) AS `kaloria`, SUM(`zsir`) AS `zsir`, SUM(`feherje`) AS `feherje`, SUM(`szenhidrat`) AS `szenhidrat` FROM `koxapp_bevitel`
-		WHERE `felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
-		AND `datum` >= date('now', '-7 day')
-	''').fetchone()
-	context['bevitel']['havi'] = cursor.execute('''
-		SELECT SUM(`kaloria`) AS `kaloria`, SUM(`zsir`) AS `zsir`, SUM(`feherje`) AS `feherje`, SUM(`szenhidrat`) AS `szenhidrat` FROM `koxapp_bevitel`
-		WHERE `felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
-		AND `datum` >= date('now', '-1 month')
-	''').fetchone()
-	context['mozgas']['napi'] = cursor.execute('''
-		SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, SUM(`koxapp_mozgas`.`ido`) AS `ido` FROM `koxapp_mozgastipus`
-		LEFT JOIN `koxapp_mozgas` ON `koxapp_mozgas`.`tipus_id` = `koxapp_mozgastipus`.`id`
-			AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
-			AND `koxapp_mozgas`.`datum` >= date('now', '-1 day')
-		GROUP BY `koxapp_mozgas`.`tipus_id`, `koxapp_mozgastipus`.`nev`
-	''').fetchall()
-	context['mozgas']['heti'] = cursor.execute('''
-		SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, SUM(`koxapp_mozgas`.`ido`) AS `ido` FROM `koxapp_mozgastipus`
-		LEFT JOIN `koxapp_mozgas` ON `koxapp_mozgas`.`tipus_id` = `koxapp_mozgastipus`.`id`
-			AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
-			AND `koxapp_mozgas`.`datum` >= date('now', '-7 day')
-		GROUP BY `koxapp_mozgas`.`tipus_id`, `koxapp_mozgastipus`.`nev`
-	''').fetchall()
-	context['mozgas']['havi'] = cursor.execute('''
-		SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, SUM(`koxapp_mozgas`.`ido`) AS `ido` FROM `koxapp_mozgastipus`
-		LEFT JOIN `koxapp_mozgas` ON `koxapp_mozgas`.`tipus_id` = `koxapp_mozgastipus`.`id`
-			AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
-			AND `koxapp_mozgas`.`datum` >= date('now', '-1 month')
-		GROUP BY `koxapp_mozgas`.`tipus_id`, `koxapp_mozgastipus`.`nev`
-	''').fetchall()
+	context['bevitel']['napi'] = Bevitel.getStat('daily')
+	context['bevitel']['heti'] = Bevitel.getStat('weekly')
+	context['bevitel']['havi'] = Bevitel.getStat('monthly')
+	context['mozgas']['napi'] = Mozgas.getStat('daily')
+	context['mozgas']['heti'] = Mozgas.getStat('weekly')
+	context['mozgas']['havi'] = Mozgas.getStat('monthly')
 	# elmúlt 24 óra
 	# napi bevitel:
 	#	- Kcal
