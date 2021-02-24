@@ -1,0 +1,19 @@
+.footer{
+	width: 100%;
+	color: gray;
+	margin:0 auto;
+	height:105px;
+	bottom: 0;
+}
+
+.footer p{
+	color:#5b5b5b;
+	font-size:10px;
+	font-family: Trebuchet MS;
+	font-weight:bold;
+	float:center;
+	padding-top: 30px;
+	padding-right: 200px;
+	align-content: center;
+	text-align: center;
+}
