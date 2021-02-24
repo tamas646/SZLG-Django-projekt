@@ -160,7 +160,7 @@ def backend_registration(request, *args, **kwargs):
 			magassag = request.POST['magassag'],
 			suly_akt = request.POST['suly_akt'],
 			suly_cel = request.POST['suly_cel'],
-			ferfi = request.POST['ferfi']
+			ferfi = request.POST['ferfi'] == 'on'
 		)
 		user.save()
 		request.session['login_regist'] = True
