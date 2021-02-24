@@ -198,7 +198,7 @@ def backend_save_intake(request, *args, **kwargs):
 	feherje = int(request.POST['feherje']) * mennyiseg / 100
 	szenhidrat = int(request.POST['szenhidrat']) * mennyiseg / 100
 	intake = Bevitel(
-		felhasznalo = Felhasznalo.objects.filter(id = request.session['user']['id']),
+		felhasznalo = Felhasznalo.objects.filter(id = request.session['user']['id'])[0],
 		datum = datetime.datetime.now(),
 		kaloria = kaloria,
 		zsir = zsir,
@@ -209,4 +209,15 @@ def backend_save_intake(request, *args, **kwargs):
 	return redirect('/beviteli-mezo')
 
 def backend_save_sport(request, *args, **kwargs):
-	pass
+	if not isLoggedIn(request.session):
+		return redirect('/')
+	if request.method != 'POST' or not hasattr(request.POST, 'tipus_id') or not hasattr(request.POST, 'ido'):
+		return redirect('/beviteli-mezo')
+	sport = Mozgas(
+		felhasznalo = Felhasznalo.objects.filter(id = request.session['user']['id'])[0],
+		datum = datetime.datetime.now(),
+		tipus = MozgasTipus.objects.filter(id = int(request.POST['tipus_id']))[0],
+		ido = int(request.POST['ido'])
+	)
+	sport.save()
+	return redirect('/beviteli-mezo')
