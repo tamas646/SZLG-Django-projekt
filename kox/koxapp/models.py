@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Felhasznalo(models.Model):
-	felhasznalonev = models.CharField(max_length = 255)
+	felhasznalonev = models.CharField(max_length = 255, unique = True)
 	jelszo = models.CharField(max_length = 255)
 	szuldatum = models.DateField()
 	magassag = models.IntegerField()

@@ -134,13 +134,38 @@ def grafikonok(request, *args, **kwargs):
 # Backend views
 
 def backend_login(request, *args, **kwargs):
-	pass
+	if not isLoggedIn(request.session) and request.method == 'POST' and hasattr(request.POST, 'felhasznalonev') and hasattr(request.POST, 'jelszo'):
+		result = Felhasznalo.objects.filter(felhasznalonev = request.POST['felhasznalonev'], jelszo = request.POST['jelszo'])
+		if len(result) == 1:
+			request.session['user'] = {
+				'id': result.id,
+				'felhasznalonev': result.felhasznalonev,
+				'jelszo': result.jelszo,
+			}
+			return redirect('/')
+		request.session['login_error'] = 'Hibás felhasználónév vagy jelszó'
+	return redirect('/bejelentkezes')
 
 def backend_registration(request, *args, **kwargs):
-	pass
+	if not isLoggedIn(request.session) and request.method == 'POST' and hasattr(request.POST, 'felhasznalonev') and hasattr(request.POST, 'jelszo') and hasattr(request.POST, 'szuldatum') and hasattr(request.POST, 'magassag') and hasattr(request.POST, 'suly_akt') and hasattr(request.POST, 'suly_cel') and hasattr(request.POST, 'ferfi'):
+		user = Felhasznalo(
+			felhasznalonev = request.POST['felhasznalonev'],
+			jelszo = request.POST['jelszo'],
+			szuldatum = request.POST['szuldatum'],
+			magassag = request.POST['magassag'],
+			suly_akt = request.POST['suly_akt'],
+			suly_cel = request.POST['suly_cel'],
+			ferfi = request.POST['ferfi']
+		)
+		user.save()
+		request.session['login_regist'] = True
+		return redirect('/bejelentkezes')
+	return redirect('/regisztracio')
 
 def backend_logout(request, *args, **kwargs):
-	pass
+	if isLoggedIn(request.session):
+		del request.session['user']
+	return redirect('/bejelentkezes')
 
 def backend_get_food_details(request, *args, **kwargs):
 	pass
