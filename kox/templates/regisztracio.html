@@ -14,17 +14,19 @@
 	</div>
 	<div>
 		<div>
-			<input type="text" placeholder="Felhasználónév">
-			<input type="password" placeholder="Jelszó">
-			<label for="">Születési idő</label>
-			<input type="date">	
-			<label for="">Nem</label>
-			<input type="radio">
-			<input type="text" placeholder="Magasság">
-			<input type="text" placeholder="Jelenlegi súly">
-			<input type="text" placeholder="Célsúly">
-			<a href="bejelentkezes" class="button">Vissza</a>
-			<button onclick="Regisztráció();">Regisztráció</button>
+			<form action="views.backend_registration)"> url az actions
+				<input type="text" placeholder="Felhasználónév" name="felhasznalonev">
+				<input type="password" placeholder="Jelszó" name="jelszo">
+				<label for="">Születési idő</label>
+				<input type="date" name="szuldatum">	
+				<label for="">Nem</label>
+				<input type="radio" name="ferfi">
+				<input type="text" placeholder="Magasság" name="magassag">
+				<input type="text" placeholder="Jelenlegi súly" name="suly_akt">
+				<input type="text" placeholder="Célsúly" name="suly_cel">
+				<a href="bejelentkezes" class="button">Vissza</a>
+				<input type="submit">
+			</form>
 		</div>
 	</div>
 	<div>
