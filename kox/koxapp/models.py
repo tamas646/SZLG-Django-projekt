@@ -40,12 +40,3 @@ class Mozgas(models.Model):
 
 	def __str__(self):
 		return f"{self.felhasznalo.felhasznalonev} ({self.datum}) - típus: {self.tipus.nev} ({self.ido} perc) [{self.id}]"
-
-class Etel(models.Model):
-	nev = models.CharField(max_length = 255)
-	zsir = models.IntegerField()
-	feherje = models.IntegerField()
-	szenhidrat = models.IntegerField()
-
-	def __str__(self):
-		return f"{self.nev} [{self.id}]"
