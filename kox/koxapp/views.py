@@ -204,4 +204,11 @@ def backend_save_sport(request, *args, **kwargs):
 	return redirect('/beviteli-mezo')
 
 def backend_change_userdata(request, *args, **kwargs):
-	pass
+	if not isLoggedIn(request):
+		return redirect('/')
+	if request.method != 'POST':
+		return redirect('/adatok')
+	Felhasznalo.objects.filter(id = request.session['user']['id']).update(magassag = request.POST['magassag'], suly_akt = request.POST['suly_akt'], suly_cel = request.POST['suly_cel'])
+	if 'jelszo' in request.POST and request.POST['jelszo'] != '':
+		Felhasznalo.objects.filter(id = request.session['user']['id']).update(jelszo = request.POST['jelszo'])
+	return redirect('/adatok')
