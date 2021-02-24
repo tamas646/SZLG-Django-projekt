@@ -1,6 +1,7 @@
 import datetime
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
+from django.db import connection
 from koxapp.models import Felhasznalo, Bevitel, MozgasTipus, Mozgas, Etel
 
 # Create your views here.
@@ -55,7 +56,7 @@ def beviteli_mezo(request, *args, **kwargs):
 		context['termekek'].append({ 'id': termek.id, 'nev': termek.nev })
 	for mozgas in MozgasTipus.objects.all():
 		context['termekek'].append({ 'id': mozgas.id, 'nev': mozgas.nev })
-	return render(request, 'beviteli-mezo.html')
+	return render(request, 'beviteli-mezo.html', context)
 
 def grafikonok(request, *args, **kwargs):
 	if not isLoggedIn(request):
@@ -65,42 +66,43 @@ def grafikonok(request, *args, **kwargs):
 		'mozgas': {},
 	}
 	# result = map(lambda a: { 'kaloria':  }, Bevitel.objects.filter(a => a.felhasznalo.id == request.session['user']['id'])
-	context['bevitel']['napi'] = Bevitel.objects.raw('''
+	cursor = connection.cursor()
+	context['bevitel']['napi'] = cursor.execute('''
 		SELECT SUM(`kaloria`) AS `kaloria`, SUM(`zsir`) AS `zsir`, SUM(`feherje`) AS `feherje`, SUM(`szenhidrat`) AS `szenhidrat` FROM `koxapp_bevitel`
-		WHERE `felhasznalo_id` = ''' + request.session['user']['id'] + '''
+		WHERE `felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
 		AND `datum` >= date('now', '-1 day')
-	''')[0]
-	context['bevitel']['heti'] = Bevitel.objects.raw('''
+	''').fetchone()
+	context['bevitel']['heti'] = cursor.execute('''
 		SELECT SUM(`kaloria`) AS `kaloria`, SUM(`zsir`) AS `zsir`, SUM(`feherje`) AS `feherje`, SUM(`szenhidrat`) AS `szenhidrat` FROM `koxapp_bevitel`
-		WHERE `felhasznalo_id` = ''' + request.session['user']['id'] + '''
+		WHERE `felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
 		AND `datum` >= date('now', '-7 day')
-	''')[0]
-	context['bevitel']['havi'] = Bevitel.objects.raw('''
+	''').fetchone()
+	context['bevitel']['havi'] = cursor.execute('''
 		SELECT SUM(`kaloria`) AS `kaloria`, SUM(`zsir`) AS `zsir`, SUM(`feherje`) AS `feherje`, SUM(`szenhidrat`) AS `szenhidrat` FROM `koxapp_bevitel`
-		WHERE `felhasznalo_id` = ''' + request.session['user']['id'] + '''
+		WHERE `felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
 		AND `datum` >= date('now', '-1 month')
-	''')[0]
-	context['mozgas']['napi'] = Mozgas.objects.raw('''
+	''').fetchone()
+	context['mozgas']['napi'] = cursor.execute('''
 		SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, SUM(`koxapp_mozgas`.`ido`) AS `ido` FROM `koxapp_mozgastipus`
 		LEFT JOIN `koxapp_mozgas` ON `koxapp_mozgas`.`tipus_id` = `koxapp_mozgastipus`.`id`
-			AND `koxapp_mozgas`.`felhasznalo_id` = ''' + request.session['user']['id'] + '''
+			AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
 			AND `koxapp_mozgas`.`datum` >= date('now', '-1 day')
 		GROUP BY `koxapp_mozgas`.`tipus_id`, `koxapp_mozgastipus`.`nev`
-	''')
-	context['mozgas']['heti'] = Mozgas.objects.raw('''
+	''').fetchone()
+	context['mozgas']['heti'] = cursor.execute('''
 		SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, SUM(`koxapp_mozgas`.`ido`) AS `ido` FROM `koxapp_mozgastipus`
 		LEFT JOIN `koxapp_mozgas` ON `koxapp_mozgas`.`tipus_id` = `koxapp_mozgastipus`.`id`
-			AND `koxapp_mozgas`.`felhasznalo_id` = ''' + request.session['user']['id'] + '''
+			AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
 			AND `koxapp_mozgas`.`datum` >= date('now', '-7 day')
 		GROUP BY `koxapp_mozgas`.`tipus_id`, `koxapp_mozgastipus`.`nev`
-	''')
-	context['mozgas']['havi'] = Mozgas.objects.raw('''
+	''').fetchone()
+	context['mozgas']['havi'] = cursor.execute('''
 		SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, SUM(`koxapp_mozgas`.`ido`) AS `ido` FROM `koxapp_mozgastipus`
 		LEFT JOIN `koxapp_mozgas` ON `koxapp_mozgas`.`tipus_id` = `koxapp_mozgastipus`.`id`
-			AND `koxapp_mozgas`.`felhasznalo_id` = ''' + request.session['user']['id'] + '''
+			AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
 			AND `koxapp_mozgas`.`datum` >= date('now', '-1 month')
 		GROUP BY `koxapp_mozgas`.`tipus_id`, `koxapp_mozgastipus`.`nev`
-	''')
+	''').fetchone()
 	# elmúlt 24 óra
 	# napi bevitel:
 	#	- Kcal
@@ -132,7 +134,7 @@ def grafikonok(request, *args, **kwargs):
 	#	- futás
 	#	- úszás
 	#	- kerékpározás
-	return render(request, 'grafikonok.html')
+	return render(request, 'grafikonok.html', context)
 
 # Backend views
 
