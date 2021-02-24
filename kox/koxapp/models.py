@@ -23,23 +23,23 @@ class Bevitel(models.Model):
 	szenhidrat = models.IntegerField()
 
 	@staticmethod
-	def getStat(self, period):
+	def getStat(db_cursor, user_id, period):
 		if period == 'daily':
-			return cursor.execute('''
+			return db_cursor.execute('''
 				SELECT SUM(`kaloria`) AS `kaloria`, SUM(`zsir`) AS `zsir`, SUM(`feherje`) AS `feherje`, SUM(`szenhidrat`) AS `szenhidrat` FROM `koxapp_bevitel`
-				WHERE `felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
+				WHERE `felhasznalo_id` = ''' + str(user_id) + '''
 				AND `datum` >= date('now', '-1 day')
 			''').fetchone()
 		elif period == 'weekly':
-			return cursor.execute('''
+			return db_cursor.execute('''
 				SELECT SUM(`kaloria`) AS `kaloria`, SUM(`zsir`) AS `zsir`, SUM(`feherje`) AS `feherje`, SUM(`szenhidrat`) AS `szenhidrat` FROM `koxapp_bevitel`
-				WHERE `felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
+				WHERE `felhasznalo_id` = ''' + str(user_id) + '''
 				AND `datum` >= date('now', '-7 day')
 			''').fetchone()
 		elif period == 'monthly':
-			return cursor.execute('''
+			return db_cursor.execute('''
 				SELECT SUM(`kaloria`) AS `kaloria`, SUM(`zsir`) AS `zsir`, SUM(`feherje`) AS `feherje`, SUM(`szenhidrat`) AS `szenhidrat` FROM `koxapp_bevitel`
-				WHERE `felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
+				WHERE `felhasznalo_id` = ''' + str(user_id) + '''
 				AND `datum` >= date('now', '-1 month')
 			''').fetchone()
 		else:
@@ -62,28 +62,28 @@ class Mozgas(models.Model):
 	ido = models.IntegerField()
 
 	@staticmethod
-	def getStat(self, period):
+	def getStat(db_cursor, user_id, period):
 		if period == 'daily':
-			return cursor.execute('''
+			return db_cursor.execute('''
 				SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, SUM(`koxapp_mozgas`.`ido`) AS `ido` FROM `koxapp_mozgastipus`
 				LEFT JOIN `koxapp_mozgas` ON `koxapp_mozgas`.`tipus_id` = `koxapp_mozgastipus`.`id`
-					AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
+					AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(user_id) + '''
 					AND `koxapp_mozgas`.`datum` >= date('now', '-1 day')
 				GROUP BY `koxapp_mozgas`.`tipus_id`, `koxapp_mozgastipus`.`nev`
 			''').fetchall()
 		elif period == 'weekly':
-			return cursor.execute('''
+			return db_cursor.execute('''
 				SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, SUM(`koxapp_mozgas`.`ido`) AS `ido` FROM `koxapp_mozgastipus`
 				LEFT JOIN `koxapp_mozgas` ON `koxapp_mozgas`.`tipus_id` = `koxapp_mozgastipus`.`id`
-					AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
+					AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(user_id) + '''
 					AND `koxapp_mozgas`.`datum` >= date('now', '-7 day')
 				GROUP BY `koxapp_mozgas`.`tipus_id`, `koxapp_mozgastipus`.`nev`
 			''').fetchall()
 		elif period == 'monthly':
-			return cursor.execute('''
+			return db_cursor.execute('''
 				SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, SUM(`koxapp_mozgas`.`ido`) AS `ido` FROM `koxapp_mozgastipus`
 				LEFT JOIN `koxapp_mozgas` ON `koxapp_mozgas`.`tipus_id` = `koxapp_mozgastipus`.`id`
-					AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(request.session['user']['id']) + '''
+					AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(user_id) + '''
 					AND `koxapp_mozgas`.`datum` >= date('now', '-1 month')
 				GROUP BY `koxapp_mozgas`.`tipus_id`, `koxapp_mozgastipus`.`nev`
 			''').fetchall()

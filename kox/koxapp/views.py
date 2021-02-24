@@ -75,12 +75,12 @@ def grafikonok(request, *args, **kwargs):
 	}
 	# result = map(lambda a: { 'kaloria':  }, Bevitel.objects.filter(a => a.felhasznalo.id == request.session['user']['id'])
 	cursor = connection.cursor()
-	context['bevitel']['napi'] = Bevitel.getStat('daily')
-	context['bevitel']['heti'] = Bevitel.getStat('weekly')
-	context['bevitel']['havi'] = Bevitel.getStat('monthly')
-	context['mozgas']['napi'] = Mozgas.getStat('daily')
-	context['mozgas']['heti'] = Mozgas.getStat('weekly')
-	context['mozgas']['havi'] = Mozgas.getStat('monthly')
+	context['bevitel']['napi'] = Bevitel.getStat(cursor, request.session['user']['id'], 'daily')
+	context['bevitel']['heti'] = Bevitel.getStat(cursor, request.session['user']['id'], 'weekly')
+	context['bevitel']['havi'] = Bevitel.getStat(cursor, request.session['user']['id'], 'monthly')
+	context['mozgas']['napi'] = Mozgas.getStat(cursor, request.session['user']['id'], 'daily')
+	context['mozgas']['heti'] = Mozgas.getStat(cursor, request.session['user']['id'], 'weekly')
+	context['mozgas']['havi'] = Mozgas.getStat(cursor, request.session['user']['id'], 'monthly')
 	# elmúlt 24 óra
 	# napi bevitel:
 	#	- Kcal
