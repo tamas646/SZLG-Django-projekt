@@ -26,19 +26,19 @@ class Bevitel(models.Model):
 	def getStat(db_cursor, user_id, period):
 		if period == 'daily':
 			return db_cursor.execute('''
-				SELECT SUM(`kaloria`) AS `kaloria`, SUM(`zsir`) AS `zsir`, SUM(`feherje`) AS `feherje`, SUM(`szenhidrat`) AS `szenhidrat` FROM `koxapp_bevitel`
+				SELECT (CASE WHEN SUM(`kaloria`) IS NOT NULL THEN SUM(`kaloria`) ELSE 0 END) AS `kaloria`, (CASE WHEN SUM(`zsir`) IS NOT NULL THEN SUM(`zsir`) ELSE 0 END) AS `zsir`, (CASE WHEN SUM(`feherje`) IS NOT NULL THEN SUM(`feherje`) ELSE 0 END) AS `feherje`, (CASE WHEN SUM(`szenhidrat`) IS NOT NULL THEN SUM(`szenhidrat`) ELSE 0 END) AS `szenhidrat` FROM `koxapp_bevitel`
 				WHERE `felhasznalo_id` = ''' + str(user_id) + '''
 				AND `datum` >= date('now', '-1 day')
 			''').fetchone()
 		elif period == 'weekly':
 			return db_cursor.execute('''
-				SELECT SUM(`kaloria`) AS `kaloria`, SUM(`zsir`) AS `zsir`, SUM(`feherje`) AS `feherje`, SUM(`szenhidrat`) AS `szenhidrat` FROM `koxapp_bevitel`
+				SELECT (CASE WHEN SUM(`kaloria`) IS NOT NULL THEN SUM(`kaloria`) ELSE 0 END) AS `kaloria`, (CASE WHEN SUM(`zsir`) IS NOT NULL THEN SUM(`zsir`) ELSE 0 END) AS `zsir`, (CASE WHEN SUM(`feherje`) IS NOT NULL THEN SUM(`feherje`) ELSE 0 END) AS `feherje`, (CASE WHEN SUM(`szenhidrat`) IS NOT NULL THEN SUM(`szenhidrat`) ELSE 0 END) AS `szenhidrat` FROM `koxapp_bevitel`
 				WHERE `felhasznalo_id` = ''' + str(user_id) + '''
 				AND `datum` >= date('now', '-7 day')
 			''').fetchone()
 		elif period == 'monthly':
 			return db_cursor.execute('''
-				SELECT SUM(`kaloria`) AS `kaloria`, SUM(`zsir`) AS `zsir`, SUM(`feherje`) AS `feherje`, SUM(`szenhidrat`) AS `szenhidrat` FROM `koxapp_bevitel`
+				SELECT (CASE WHEN SUM(`kaloria`) IS NOT NULL THEN SUM(`kaloria`) ELSE 0 END) AS `kaloria`, (CASE WHEN SUM(`zsir`) IS NOT NULL THEN SUM(`zsir`) ELSE 0 END) AS `zsir`, (CASE WHEN SUM(`feherje`) IS NOT NULL THEN SUM(`feherje`) ELSE 0 END) AS `feherje`, (CASE WHEN SUM(`szenhidrat`) IS NOT NULL THEN SUM(`szenhidrat`) ELSE 0 END) AS `szenhidrat` FROM `koxapp_bevitel`
 				WHERE `felhasznalo_id` = ''' + str(user_id) + '''
 				AND `datum` >= date('now', '-1 month')
 			''').fetchone()
@@ -65,7 +65,7 @@ class Mozgas(models.Model):
 	def getStat(db_cursor, user_id, period):
 		if period == 'daily':
 			return db_cursor.execute('''
-				SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, SUM(`koxapp_mozgas`.`ido`) AS `ido` FROM `koxapp_mozgastipus`
+				SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, (CASE WHEN SUM(`koxapp_mozgas`.`ido`) IS NOT NULL THEN SUM(`koxapp_mozgas`.`ido`) ELSE 0 END) AS `ido` FROM `koxapp_mozgastipus`
 				LEFT JOIN `koxapp_mozgas` ON `koxapp_mozgas`.`tipus_id` = `koxapp_mozgastipus`.`id`
 					AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(user_id) + '''
 					AND `koxapp_mozgas`.`datum` >= date('now', '-1 day')
@@ -73,7 +73,7 @@ class Mozgas(models.Model):
 			''').fetchall()
 		elif period == 'weekly':
 			return db_cursor.execute('''
-				SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, SUM(`koxapp_mozgas`.`ido`) AS `ido` FROM `koxapp_mozgastipus`
+				SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, (CASE WHEN SUM(`koxapp_mozgas`.`ido`) IS NOT NULL THEN SUM(`koxapp_mozgas`.`ido`) ELSE 0 END) AS `ido` FROM `koxapp_mozgastipus`
 				LEFT JOIN `koxapp_mozgas` ON `koxapp_mozgas`.`tipus_id` = `koxapp_mozgastipus`.`id`
 					AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(user_id) + '''
 					AND `koxapp_mozgas`.`datum` >= date('now', '-7 day')
@@ -81,7 +81,7 @@ class Mozgas(models.Model):
 			''').fetchall()
 		elif period == 'monthly':
 			return db_cursor.execute('''
-				SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, SUM(`koxapp_mozgas`.`ido`) AS `ido` FROM `koxapp_mozgastipus`
+				SELECT `koxapp_mozgastipus`.`nev` AS `mozgas`, (CASE WHEN SUM(`koxapp_mozgas`.`ido`) IS NOT NULL THEN SUM(`koxapp_mozgas`.`ido`) ELSE 0 END) AS `ido` FROM `koxapp_mozgastipus`
 				LEFT JOIN `koxapp_mozgas` ON `koxapp_mozgas`.`tipus_id` = `koxapp_mozgastipus`.`id`
 					AND `koxapp_mozgas`.`felhasznalo_id` = ''' + str(user_id) + '''
 					AND `koxapp_mozgas`.`datum` >= date('now', '-1 month')
