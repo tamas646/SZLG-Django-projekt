@@ -9,12 +9,6 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/bejelentkezes.css">
 </head>
 <body>
-	<header class="topnav">
-		<a href="">Kijelentkezés</a>
-		<a href="/templates/beviteli-mezo.html">Beviteli mező</a>
-		<a href="/templates/adatok.html">Adatok</a>
-		<a href="/templates/grafikonok.html">Grafikonok</a>
-	</header>
 	<div>
 		
 	</div>
@@ -31,7 +25,7 @@
 				{% csrf_token %}
 				<input type="text" placeholder=" Felhasználónév" name="felhasznalonev">
 				<input type="password" placeholder="Jelszó" name="jelszo">
-				<input type="submit" class="button">Bejelentkezés</input>
+				<input type="submit" class="button" value="Bejelentkezés">
 			</form>
 			<a href="regisztracio" class="button">Regisztráció</a>
 		</div>
