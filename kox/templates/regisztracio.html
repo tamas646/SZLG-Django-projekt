@@ -15,6 +15,7 @@
 	<div>
 		<div>
 			<form action="backend/registration" method="POST">
+				{% csrf_token %}
 				<input type="text" placeholder="Felhasználónév" name="felhasznalonev">
 				<input type="password" placeholder="Jelszó" name="jelszo">
 				<label for="">Születési idő</label>

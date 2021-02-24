@@ -18,6 +18,7 @@
 	<div>
 		<div>
 			<form action="backend/login" method="POST">
+				{% csrf_token %}
 				<input type="text" placeholder=" Felhasználónév" name="felhasznalonev">
 				<input type="password" placeholder="Jelszó" name="jelszo">
 				<input type="submit" class="button">Bejelentkezés</input>
