@@ -113,9 +113,9 @@ def backend_login(request, *args, **kwargs):
 		result = Felhasznalo.objects.filter(felhasznalonev = request.POST['felhasznalonev'], jelszo = request.POST['jelszo'])
 		if len(result) == 1:
 			request.session['user'] = {
-				'id': result.id,
-				'felhasznalonev': result.felhasznalonev,
-				'jelszo': result.jelszo,
+				'id': result[0].id,
+				'felhasznalonev': result[0].felhasznalonev,
+				'jelszo': result[0].jelszo,
 			}
 			return redirect('/')
 		request.session['login_error'] = 'Hibás felhasználónév vagy jelszó'
