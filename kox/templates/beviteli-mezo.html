@@ -19,37 +19,50 @@
 		<a href="adatok" >Adatok</a>
 		<a href="grafikonok">Grafikonok</a>
 	</header>
-	<div class="bg">
+	<div class="container">
 		<div>
-			<form action="backend/save_intake" method="POST">
-				{% csrf_token %}
-				<label for="">Termék neve</label>
-				<select name="" id="" onchange="get_food_details(this);">
-					<option value="0">Egyéb</option>
-					{% for termek in termekek %}
-						<option value="{{ termek.id }}">{{ termek.nev }}</option>
-					{% endfor %}
-				</select>
-				<input type="number" placeholder="Mennyiség (gramm)" name="mennyiseg">
-				<input type="number" placeholder="Kcal/100g" name="kaloria" id="kcal" onchange="tápanyag_átváltás();">
-				<input type="number" placeholder="Zsír/100g" name="zsir" id="fat" onchange="tápanyag_átváltás();">
-				<input type="number" placeholder="Fehérje/100g" name="feherje" id="prot" onchange="tápanyag_átváltás();">
-				<input type="number" placeholder="Szénhidrát/100g" name="szenhidrat" id="carb" onchange="tápanyag_átváltás();">
-				<input type="submit" class="button" value="Mentés">
-			</form>
+			<div class="div_külső2">
+				<form action="backend/save_intake" method="POST">
+					{% csrf_token %}
+					<h4>Termék neve:</h4>
+					<select class="input2" name="" id="" onchange="get_food_details(this);">
+						<option value="0">Egyéb</option>
+						{% for termek in termekek %}
+							<option value="{{ termek.id }}">{{ termek.nev }}</option>
+						{% endfor %}
+					</select>
+					<h4>Mennyiség:</h4>
+					<input class="input" type="number" placeholder="Mennyiség (gramm)" name="mennyiseg">
+					<h4>Kcal/100g:</h4>
+					<input class="input" type="number" placeholder="Kcal/100g" name="kaloria" id="kcal" onchange="tápanyag_átváltás();">
+					<h4>Zsír/100g:</h4>
+					<input class="input" type="number" placeholder="Zsír/100g" name="zsir" id="fat" onchange="tápanyag_átváltás();">
+					<h4>Fehérje/100g:</h4>
+					<input class="input" type="number" placeholder="Fehérje/100g" name="feherje" id="prot" onchange="tápanyag_átváltás();">
+					<h4>Szénhidrát/100g</h4>
+					<input class="input" type="number" placeholder="Szénhidrát/100g" name="szenhidrat" id="carb" onchange="tápanyag_átváltás();">
+					<br>
+					<input class="input" type="submit" class="button" value="Mentés">
+				</form>
+			</div>
 		</div>
-		<div>
-			<form action="backend/save_sport" method="POST">
-				{% csrf_token %}
-				<label for="">Sport neve</label>
-				<select name="tipus_id" id="">
-					{% for mozgas in mozgasok %}
-						<option value="{{ mozgas.id }}">{{ mozgas.nev }}</option>
-					{% endfor %}
-				</select>
-				<input type="text" placeholder="Időtartam (perc)" name="ido">
-				<input type="submit" class="button" value="Mentés">
-			</form>
+		
+		<div> 
+			<div class="div_külső2">
+				<form action="backend/save_sport" method="POST">
+					{% csrf_token %}
+					<h4>Sport neve:</h4>
+					<select class="input2" name="tipus_id" id="">
+						{% for mozgas in mozgasok %}
+							<option value="{{ mozgas.id }}">{{ mozgas.nev }}</option>
+						{% endfor %}
+					</select>
+					<h4>Időtartam (perc):</h4>
+					<input class="input" type="text" placeholder="Időtartam (perc)" name="ido">
+					<br>
+					<input class="input" type="submit" class="button" value="Mentés">
+				</form>
+			</div>
 		</div>
 	</div>
 	<footer>
