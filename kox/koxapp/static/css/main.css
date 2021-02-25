@@ -8,15 +8,13 @@ body{
 	min-height:100vh;
 	margin:0;
 	position:relative;
-	background: url(../img/háttér.jpg);
+		background: url(../img/háttér.jpg);
 	background-repeat: no-repeat;
   	background-attachment: fixed;
  	background-size: cover;
 	
 
 }
-
-
 .button {
   font: bold 11px Arial;
   text-decoration: none;
@@ -31,13 +29,13 @@ body{
 
 
 .footer {
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	background-color: gray;
-	color: white;
-	height:50px;
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+background-color:#333;
+color: white;
+height:50px;
 }
 
 #footerszoveg{
@@ -64,7 +62,6 @@ body{
   color: white;
   font-size: 16px;
   cursor: pointer;
-  outline: none;
 }
 .btn:hover{
 	color: lightblue;
@@ -88,5 +85,117 @@ body{
 	color: white;
 	text-decoration: none;
 }
-
+::placeholder
+{
+    color:#262a33;
+}
+.div_külső
+{
+    position: absolute;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFFFF;
+	border-radius: 50px;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}	
+#regisztráció
+{
+    width:30vw;
+    height: 50vh;
+    padding: 20px;
+}
+#bejelentkezés
+{
+    width:25vw;
+    height: 25vh;
+    padding: 20px;
+}
+#input_mező_dátum
+{
+    color:rgba(255,255,255,0.5);
+}
+.input
+{
+    border: none;
+    background: linear-gradient(to right, #b8fb00, #3fcc54);
+    border-bottom: solid 3px#3fcc54;
+    color: rgb(255,255,255);
+    text-align: center;
+    font-size: 16px;
+    margin: auto;
+    margin-top: 5px;
+	border-radius: 10px;
+    padding: 4px;
+    outline: none;
+    width: 	calc(85% - 8px);
+    display: block;
+}
+.input:focus
+{
+	border-bottom: solid 3px #b8fb00;
+}
+.button
+{
+    display: block;
+    color: #262a33;
+    background: linear-gradient(to right, #b8fb00, #3fcc54);
+    box-shadow: 0 6px rgba(0, 0, 0, 0.14);
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    width: 85%;
+    margin: auto;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    padding: 4px;
+    font-size: 13px;
+}
+.button:hover
+{
+    background: #3fcc54;
+}
+.button:active
+{
+    background: #3fcc54;
+    transition: 100ms;
+	box-shadow: 0 3px #262a33;
+    transform: translateY(4px);
+}
+#láthatatlan{
+    display: none;
+}
+h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  .topnav a {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  #koksz{
+    float: left;
+    color: white;
+    font: Arial;
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+  a{
+	  text-decoration: none;
+  }
 

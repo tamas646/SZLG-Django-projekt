@@ -25,17 +25,25 @@
 		<h1 id="koksz">KOX.HU</h1>
 	</header>
 
-	<div class="main">
-			<h2 class="sign" align="center">Bejelentkezés</h2>
-			<br>
+	<div class="div_külső">
+		<div id="bejelentkezés">
+			<h2>Bejelentkezés</h2>
+			
 			<form action="backend/login" method="POST">
 				{% csrf_token %}
-				<input class="felh" align="center" type="text" placeholder=" Felhasználónév" name="felhasznalonev" required>
-				<input class="jelsz" align="center" type="password" placeholder="Jelszó" name="jelszo" required>
-				<input class="be" type="submit" class="button" value="Bejelentkezés">
+				<input class="input" type="text" placeholder=" Felhasználónév" name="felhasznalonev">
+				<input class="input" type="password" placeholder="Jelszó" name="jelszo">
+				<br>
+				<button class="button">
+					<input id="láthatatlan" type="submit" value="Bejelentkezés">
+					Bejelentkezés
+				</button>
 			</form>
-			<br>
-			<a href="regisztracio" class="reg">Regisztráció</a>
+			<a href="regisztracio">
+			<button class="button">Regisztráció</button>
+			</a>
+			
+		</div>
 	</div>
 	<footer>
 		{% include "footer.html" %}
