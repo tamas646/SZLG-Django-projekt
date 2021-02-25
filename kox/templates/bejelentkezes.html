@@ -25,8 +25,8 @@
 			<br>
 			<form action="backend/login" method="POST">
 				{% csrf_token %}
-				<input class="felh" align="center" type="text" placeholder=" Felhasználónév" name="felhasznalonev">
-				<input class="jelsz" align="center" type="password" placeholder="Jelszó" name="jelszo">
+				<input class="felh" align="center" type="text" placeholder=" Felhasználónév" name="felhasznalonev" required>
+				<input class="jelsz" align="center" type="password" placeholder="Jelszó" name="jelszo" required>
 				<input class="be" type="submit" class="button" value="Bejelentkezés">
 			</form>
 			<br>
