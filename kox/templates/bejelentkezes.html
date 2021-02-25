@@ -9,8 +9,15 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/bejelentkezes.css">
 </head>
 <body>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+		<div class="main">
+=======
+>>>>>>> Stashed changes
 	<div>
 		<div>
+>>>>>>> 490aa891e40afa50574359c3ec9de1ded4eefa60
 			<p>
 				{% if login_error %}
 					Hibás felhasználónév vagy jelszó
@@ -18,17 +25,31 @@
 					Sikeres regisztráció. Mostmár bejelentkezhet.
 				{% endif %}
 			</p>
+			<p class="sign" align="center">Bejelentkezés</p>
 			<form action="backend/login" method="POST">
 				{% csrf_token %}
-				<input type="text" placeholder=" Felhasználónév" name="felhasznalonev">
-				<input type="password" placeholder="Jelszó" name="jelszo">
-				<input type="submit" class="button" value="Bejelentkezés">
+				<input class="felh" align="center" type="text" placeholder=" Felhasználónév" name="felhasznalonev">
+				<input class="jelsz" align="center" type="password" placeholder="Jelszó" name="jelszo">
+				<input class="be" type="submit" class="button" value="Bejelentkezés">
 			</form>
-			<a href="regisztracio" class="button">Regisztráció</a>
+			<br>
+			<a href="regisztracio" class="reg">Regisztráció</a>
 		</div>
+<<<<<<< Updated upstream
 	</div>
 	<footer class="footer">
 	<p>Indeed</p>
+=======
+<<<<<<< HEAD
+		
+<footer class="footer">
+	
+=======
+	</div>
+	<footer class="footer">
+	<p>Indeed</p>
+>>>>>>> 490aa891e40afa50574359c3ec9de1ded4eefa60
+>>>>>>> Stashed changes
 </footer>
 </body>
 </html>
