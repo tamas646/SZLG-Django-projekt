@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
 }
 
 body{ 
@@ -10,8 +11,6 @@ body{
 	background: url(../img/háttér.jpg);
 	background-repeat: no-repeat;
 }
-header{ min-height:50px; background:black; }
-footer{ background:black; }
 
 .button {
   font: bold 11px Arial;
