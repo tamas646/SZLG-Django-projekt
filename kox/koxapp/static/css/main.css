@@ -50,6 +50,7 @@ height:50px;
 	cursor: initial;
 	float: center;
 	text-decoration: none;
+
 }
 
 .flink{
@@ -72,6 +73,7 @@ height:50px;
 	text-align: left;
 	margin-top: -20px;
 	margin-left: 20px;
+	text-decoration: none;
 
 }
 .gitico{
@@ -83,6 +85,7 @@ height:50px;
 
 .glink{
 	color: white;
+	text-decoration: none;
 }
 
 
