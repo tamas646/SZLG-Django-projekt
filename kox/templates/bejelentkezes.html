@@ -11,7 +11,7 @@
 <body>
 	<header class="topnav"></header>
 
-		<div class="main">
+	<div class="main">
 	<div>
 		<div>
 			<p>
@@ -21,7 +21,7 @@
 					Sikeres regisztráció. Mostmár bejelentkezhet.
 				{% endif %}
 			</p>
-			<p class="sign" align="center">Bejelentkezés</p>
+			<h2 class="sign" align="center">Bejelentkezés</h2>
 			<form action="backend/login" method="POST">
 				{% csrf_token %}
 				<input class="felh" align="center" type="text" placeholder=" Felhasználónév" name="felhasznalonev">
