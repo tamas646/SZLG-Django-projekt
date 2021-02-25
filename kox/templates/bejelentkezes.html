@@ -9,7 +9,9 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/bejelentkezes.css">
 </head>
 <body>
-	<header class="topnav"></header>
+	<header class="topnav">
+		<h1 id="koksz">Kox.hu</h1>
+	</header>
 
 	<div class="main">
 			<p>
@@ -30,11 +32,9 @@
 			<br>
 			<a href="regisztracio" class="reg">Regisztráció</a>
 	</div>
-	<footer class="footer">
-		<p id="footerszoveg">Kox.hu © 2021</p>
-		<p class="flink"><button onclick="Rickroll();" class="btn">Koxolási technikák</button></p>
-		<p class="github"><a href="https://github.com/tamas646/SZLG-Django-projekt" class="glink">Github</a></p>
-		<img src="https://github.com/favicon.ico" class="gitico">
+	<footer>
+		{% include "footer.html" %}
 	</footer>
+</footer>
 </body>
 </html>

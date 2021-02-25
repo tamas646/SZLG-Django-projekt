@@ -37,3 +37,11 @@
   background-color: #ddd;
   color: black;
 }
+
+#koksz{
+  float: left;
+  color: white;
+  font: Arial;
+  margin-top: 5px;
+  margin-left: 5px;
+}

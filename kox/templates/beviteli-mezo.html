@@ -10,6 +10,7 @@
 </head>
 <body>
 	<header class="topnav">
+		<h1 id="koksz">Kox.hu</h1>
 		<a href="backend/logout" >Kijelentkezés</a>
 		<a href="beviteli-mezo" >Beviteli mező</a>
 		<a href="adatok" >Adatok</a>
@@ -48,17 +49,8 @@
 			</form>
 		</div>
 	</div>
-<footer class="footer-dark">
-            <div class="container">
-                <div class="row">
-                    <div class="info">
-                        <h3>Kox.hu</h3>
-                        <p>Random szöveg I guess</p>
-                    </div>
-                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
-                 </div>
-                <p class="copyright">Kox.hu © 2021</p>
-            </div>
-        </footer>
+	<footer>
+    	{% include "footer.html" %}
+    </footer>
 </body>
 </html>

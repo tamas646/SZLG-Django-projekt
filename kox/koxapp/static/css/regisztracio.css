@@ -1,0 +1,13 @@
+.topnav {
+	background-color: #333;
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+#koksz{
+  float: left;
+  color: white;
+  font: Arial;
+  margin-top: 5px;
+  margin-left: 5px;
+}
