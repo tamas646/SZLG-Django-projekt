@@ -115,3 +115,8 @@ a {
             border-radius: 0px;
         }
         
+
+	.topnav {
+		overflow: hidden;
+		background-color: #333;
+}
