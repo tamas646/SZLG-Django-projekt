@@ -45,6 +45,13 @@ height:50px;
 	text-align: center;
 }
 
+.lonk{
+	color: white;
+	cursor: initial;
+	float: center;
+	text-decoration: none;
+}
+
 .flink{
 	text-align: right;
 	margin-top: -20px;
