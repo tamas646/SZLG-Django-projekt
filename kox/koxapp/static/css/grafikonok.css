@@ -2,9 +2,10 @@
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 .container > div {
-	width: 50%;
+	
 }
 
 .databox {
