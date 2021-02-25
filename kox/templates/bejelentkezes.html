@@ -7,6 +7,16 @@
 	<script type="text/javascript" src="/static/js/bejelentkezes.js"></script>
 	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/bejelentkezes.css">
+	<script type="text/javascript">
+		window.addEventListener('load', function()
+		{
+			{% if login_error %}
+				alert('Hibás felhasználónév vagy jelszó.');
+			{% elif login_regist %}
+				alert('Sikeres regisztráció. Mostmár bejelentkezhet.')
+			{% endif %}
+		});
+	</script>
 </head>
 <body>
 	<header class="topnav">
@@ -14,13 +24,6 @@
 	</header>
 
 	<div class="main">
-			<p>
-				{% if login_error %}
-					Hibás felhasználónév vagy jelszó
-				{% elif login_regist %}
-					Sikeres regisztráció. Mostmár bejelentkezhet.
-				{% endif %}
-			</p>
 			<h2 class="sign" align="center">Bejelentkezés</h2>
 			<br>
 			<form action="backend/login" method="POST">
