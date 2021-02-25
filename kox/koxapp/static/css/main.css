@@ -101,8 +101,8 @@ height:50px;
 }	
 #regisztráció
 {
-    width:30vw;
-    height: 50vh;
+    width:25vw;
+    height: 40vh;
     padding: 20px;
 }
 #bejelentkezés
@@ -113,7 +113,7 @@ height:50px;
 }
 #input_mező_dátum
 {
-    color:rgba(255,255,255,0.5);
+    color:rgba(38,43,51,0.5);
 }
 .input
 {
@@ -163,7 +163,7 @@ height:50px;
 	box-shadow: 0 3px #262a33;
     transform: translateY(4px);
 }
-#láthatatlan{
+.láthatatlan{
     display: none;
 }
 h2{
@@ -191,11 +191,16 @@ h2{
   #koksz{
     float: left;
     color: white;
-    font: Arial;
+	font-family: 'Permanent Marker', cursive;
     margin-top: 5px;
     margin-left: 5px;
   }
   a{
 	  text-decoration: none;
+  }
+  h4{
+	text-align: center;
+	margin-top: 7.5px;
+    margin-bottom: 7.5px;
   }
 

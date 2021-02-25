@@ -14,21 +14,28 @@
 	<header class="topnav">
 		<h1 id="koksz">KOX.HU</h1>
 	</header>
-		<div class="main">
-			<form action="backend/registration" method="POST">
-				{% csrf_token %}
-				<input type="text" placeholder="Felhasználónév" name="felhasznalonev">
-				<input type="password" placeholder="Jelszó" name="jelszo">
-				<label for="">Születési idő</label>
-				<input type="date" name="szuldatum">	
-				<label for="">Férfi</label>
-				<input type="checkbox" name="ferfi">
-				<input type="number" placeholder="Magasság" name="magassag">
-				<input type="number" placeholder="Jelenlegi súly" name="suly_akt">
-				<input type="number" placeholder="Célsúly" name="suly_cel">
-				<input type="submit" class="button">
-			</form>
-			<a href="bejelentkezes" class="button">Vissza</a>
+		<div class="div_külső">
+			<div id="regisztráció">
+				<form action="backend/registration" method="POST">
+					{% csrf_token %}
+					<input class="input" type="text" placeholder="Felhasználónév" name="felhasznalonev">
+					<input class="input" type="password" placeholder="Jelszó" name="jelszo">
+					<h4>Születési dátum</h4>
+					<input id="input_mező_dátum" class="input" type="date" name="szuldatum">	
+					<h4>Férfi-e?</h4>
+					<input class="input" type="checkbox" name="ferfi">
+					<input class="input" type="number" placeholder="Magasság" name="magassag">
+					<input class="input" type="number" placeholder="Jelenlegi súly" name="suly_akt">
+					<input class="input" type="number" placeholder="Célsúly" name="suly_cel">
+					<button class ="button">
+						<input class="láthatatlan" type="submit">
+						Regisztráció
+					</button>
+				</form>
+				<a href="bejelentkezes">
+					<button class="button"> Vissza</button>
+				</a>
+			</div>
 		</div>
 <footer>
 	{% include "footer.html" %}
