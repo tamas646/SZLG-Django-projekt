@@ -108,5 +108,6 @@ a {
 .topnav {
 	background-color: #333;
     width: 100%;
-    padding: 24px;
+    padding-top:24px;
+    padding-bottom: 24px;
 }
