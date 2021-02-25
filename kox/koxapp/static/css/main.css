@@ -64,6 +64,7 @@ height:50px;
   color: white;
   font-size: 16px;
   cursor: pointer;
+  outline: none;
 }
 .btn:hover{
 	color: lightblue;
