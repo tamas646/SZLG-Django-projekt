@@ -12,8 +12,7 @@
 	<header class="topnav">
 		<h1 id="koksz">Kox.hu</h1>
 	</header>
-	<div>
-		<div>
+		<div class="main">
 			<form action="backend/registration" method="POST">
 				{% csrf_token %}
 				<input type="text" placeholder="Felhasználónév" name="felhasznalonev">
@@ -29,10 +28,6 @@
 			</form>
 			<a href="bejelentkezes" class="button">Vissza</a>
 		</div>
-	</div>
-	<div>
-
-	</div>
 <footer>
 	{% include "footer.html" %}
 </footer>
