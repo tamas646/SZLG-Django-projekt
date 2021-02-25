@@ -31,13 +31,12 @@
 			
 			<form action="backend/login" method="POST">
 				{% csrf_token %}
+				<h4>Felhasználónév:</h4>
 				<input class="input" type="text" placeholder=" Felhasználónév" name="felhasznalonev">
+				<h4>Jelszó:</h4>
 				<input class="input" type="password" placeholder="Jelszó" name="jelszo">
 				<br>
-				<button class="button">
-					<input class="láthatatlan" type="submit" value="Bejelentkezés">
-					Bejelentkezés
-				</button>
+				<input class="button" type="submit" value="Bejelentkezés">
 			</form>
 			<a href="regisztracio">
 			<button class="button">Regisztráció</button>
