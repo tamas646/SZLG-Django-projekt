@@ -8,14 +8,10 @@ body{
 	margin:0;
 	position:relative;
 	background: url(../img/háttér.jpg);
-	background-repeat: repeat;
+	background-repeat: no-repeat;
 }
 header{ min-height:50px; background:black; }
 footer{ background:black; }
-
-body {
-  position: relative;
-}
 
 .button {
   font: bold 11px Arial;
@@ -51,7 +47,6 @@ body {
 
 .info{
 	margin-top: 30px;
-	padding-top: 30px;
 	margin-left: 30px;
 }
 
