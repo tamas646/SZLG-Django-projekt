@@ -7,6 +7,7 @@
 	<script type="text/javascript" src="/static/js/beviteli-mezo.js"></script>
 	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/beviteli-mezo.css">
+	<script type="text/javascript">const csrf = '{{ csrf_token }}';</script>
 </head>
 <body>
 	<header class="topnav">
@@ -21,7 +22,7 @@
 			<form action="backend/save_intake" method="POST">
 				{% csrf_token %}
 				<label for="">Termék neve</label>
-				<select name="" id="">
+				<select name="" id="" onchange="get_food_details(this);">
 					<option value="0">Egyéb</option>
 					{% for termek in termekek %}
 						<option value="{{ termek.id }}">{{ termek.nev }}</option>

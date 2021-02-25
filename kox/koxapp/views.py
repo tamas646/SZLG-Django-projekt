@@ -153,7 +153,7 @@ def backend_logout(request, *args, **kwargs):
 def backend_get_food_details(request, *args, **kwargs):
 	if not isLoggedIn(request):
 		return JsonResponse({'success': False, 'message': 'Nincs bejelentkezve'})
-	if request.method != 'POST' or not hasattr(request.POST, 'id'):
+	if request.method != 'POST':
 		return JsonResponse({'success': False, 'message': 'Hibás kérés'})
 	result = Etel.objects.filter(id = request.POST['id'])
 	if len(result) == 0:
@@ -161,9 +161,9 @@ def backend_get_food_details(request, *args, **kwargs):
 	response_data = {
 		'success': True,
 		'data': {
-			'zsir': result.zsir,
-			'feherje': result.feherje,
-			'szenhidrat': result.szenhidrat,
+			'zsir': result[0].zsir,
+			'feherje': result[0].feherje,
+			'szenhidrat': result[0].szenhidrat,
 		}
 	}
 	return JsonResponse(response_data)
