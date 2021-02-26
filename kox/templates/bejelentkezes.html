@@ -32,7 +32,7 @@
 			<form action="backend/login" method="POST">
 				{% csrf_token %}
 				<h4>Felhasználónév:</h4>
-				<input class="input" type="text" placeholder=" Felhasználónév" name="felhasznalonev">
+				<input class="input" type="text" placeholder=" Felhasználónév" name="felhasznalonev" autofocus>
 				<h4>Jelszó:</h4>
 				<input class="input" type="password" placeholder="Jelszó" name="jelszo">
 				<br>
@@ -44,9 +44,7 @@
 			
 		</div>
 	</div>
-	<footer>
-		{% include "footer.html" %}
-	</footer>
+	{% include "footer.html" %}
 </footer>
 </body>
 </html>

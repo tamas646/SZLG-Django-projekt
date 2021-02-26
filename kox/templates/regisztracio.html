@@ -9,39 +9,45 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/regisztracio.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+	<script type="text/javascript">
+		window.addEventListener('load', function()
+		{
+			{% if regist_error %}
+				alert('Ez a felhasználónév már foglalt');
+			{% endif %}
+		});
+	</script>
 </head>
 <body>
 	<header class="topnav">
 		<h1 id="koksz">KOX.HU</h1>
 	</header>
-		<div class="div_külső">
-			<div id="regisztráció">
-				<form action="backend/registration" method="POST">
-					{% csrf_token %}
-					<h4>Felhasználónév:</h4>
-					<input class="input" type="text" placeholder="Felhasználónév" name="felhasznalonev">
-					<h4>Jelszó:</h4>
-					<input class="input" type="password" placeholder="Jelszó" name="jelszo">
-					<h4>Születési dátum</h4>
-					<input id="input_mező_dátum" class="input" type="date" name="szuldatum">	
-					<!-- <h4>Férfi-e?</h4>
-					<input class="input" type="checkbox" name="ferfi">  Rosszul nézett ki, amúgy sem használjuk, kihúztam-->
-					<h4>Magasság:</h4>
-					<input class="input" type="number" placeholder="Magasság" name="magassag">
-					<h4>Jelenlegi súly:</h4>
-					<input class="input" type="number" placeholder="Jelenlegi súly" name="suly_akt">
-					<h4>Célsúly:</h4>
-					<input class="input" type="number" placeholder="Célsúly" name="suly_cel">
-					<br>
-					<input class="button" type="submit" value="Regisztráció">
-				</form>
-				<a href="bejelentkezes">
-					<button class="button"> Vissza</button>
-				</a>
-			</div>
+	<div class="div_külső">
+		<div id="regisztráció">
+			<form action="backend/registration" method="POST">
+				{% csrf_token %}
+				<h4>Felhasználónév:</h4>
+				<input class="input" type="text" placeholder="Felhasználónév" name="felhasznalonev" autofocus>
+				<h4>Jelszó:</h4>
+				<input class="input" type="password" placeholder="Jelszó" name="jelszo">
+				<h4>Születési dátum</h4>
+				<input id="input_mező_dátum" class="input" type="date" name="szuldatum">	
+				<!-- <h4>Férfi-e?</h4>
+				<input class="input" type="checkbox" name="ferfi">  Rosszul nézett ki, amúgy sem használjuk, kihúztam-->
+				<h4>Magasság:</h4>
+				<input class="input" type="number" placeholder="Magasság" name="magassag">
+				<h4>Jelenlegi súly:</h4>
+				<input class="input" type="number" placeholder="Jelenlegi súly" name="suly_akt">
+				<h4>Célsúly:</h4>
+				<input class="input" type="number" placeholder="Célsúly" name="suly_cel">
+				<br>
+				<input class="button" type="submit" value="Regisztráció">
+			</form>
+			<a href="bejelentkezes">
+				<button class="button"> Vissza</button>
+			</a>
 		</div>
-<footer>
+	</div>
 	{% include "footer.html" %}
-</footer>
 </body>
 </html>

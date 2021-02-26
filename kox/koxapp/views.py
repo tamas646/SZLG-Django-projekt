@@ -38,7 +38,11 @@ def bejelentkezes(request, *args, **kwargs):
 def regisztracio(request, *args, **kwargs):
 	if isLoggedIn(request):
 		return redirect('/')
-	return render(request, 'regisztracio.html')
+	regist_error = False
+	if 'regist_error' in request.session:
+		regist_error = True
+		del request.session['regist_error']
+	return render(request, 'regisztracio.html', { 'regist_error': regist_error })
 
 def adatok(request, *args, **kwargs):
 	if not isLoggedIn(request):
@@ -131,6 +135,10 @@ def backend_login(request, *args, **kwargs):
 
 def backend_registration(request, *args, **kwargs):
 	if not isLoggedIn(request) and request.method == 'POST':
+		result = Felhasznalo.objects.filter(felhasznalonev = request.POST['felhasznalonev'])
+		if len(result) != 0:
+			request.session['regist_error'] = True
+			return redirect('/regisztracio')
 		user = Felhasznalo(
 			felhasznalonev = request.POST['felhasznalonev'],
 			jelszo = request.POST['jelszo'],
